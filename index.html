@@ -1764,20 +1764,35 @@
 
     .promo-modal-close {
       position: absolute;
-      top: 32px;
-      right: 32px;
-      padding: 12px;
+      top: 16px;
+      right: 16px;
+      padding: 10px;
       border-radius: 50%;
-      transition: background .2s;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 10;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .promo-modal-close:hover {
-      background: rgba(255, 255, 255, .05);
+      background: rgba(0, 0, 0, 0.6);
+      transform: scale(1.1);
     }
 
     .promo-modal-close svg {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
+      stroke: #fff;
+    }
+
+    @media(min-width: 768px) {
+      .promo-modal-close {
+        top: 24px;
+        right: 24px;
+      }
     }
 
     .promo-modal-body h2 {
@@ -1841,6 +1856,33 @@
 
     .promo-modal-body .no-thanks:hover {
       color: #9ca3af;
+    }
+
+    /* --- Animation System --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.reveal-left { transform: translateX(-30px); }
+    .reveal.reveal-right { transform: translateX(30px); }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stagger-item.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -1919,12 +1961,12 @@
       <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2000&auto=format&fit=crop" alt="" />
     </div>
     <div class="hero-content">
-      <div id="heroTextWrap">
+      <div id="heroTextWrap" class="reveal">
         <h2 class="hero-title" id="heroTitle">СИЛА ПРИРОДЫ: <br /><span>НАТУРАЛЬНЫЕ ДОБАВКИ</span></h2>
         <p class="hero-subtitle" id="heroSubtitle">Выбирайте лучшие продукты для вашего здоровья. Спортивное питание
           высокого качества.</p>
       </div>
-      <button class="hero-btn">КУПИТЬ СЕЙЧАС</button>
+      <button class="hero-btn reveal" style="transition-delay: 0.2s;">КУПИТЬ СЕЙЧАС</button>
     </div>
     <div class="hero-dots" id="heroDots">
       <button class="hero-dot active" data-dot="0"></button>
@@ -1934,7 +1976,7 @@
   </section>
 
   <!-- Categories -->
-  <section class="categories">
+  <section class="categories reveal">
     <div class="container">
       <div class="categories-inner" id="categoriesWrap"></div>
     </div>
@@ -1945,7 +1987,7 @@
     <div class="container">
       <div class="promo-grid">
         <!-- Pink -->
-        <div class="promo-card" style="background:#E2A7B5">
+        <div class="promo-card reveal stagger-item" style="background:#E2A7B5">
           <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop" alt=""
             style="object-position:right bottom" />
           <div class="promo-card-content">
@@ -1955,7 +1997,7 @@
           </div>
         </div>
         <!-- Black -->
-        <div class="promo-card" style="background:#111; border:1px solid rgba(255,255,255,.1)">
+        <div class="promo-card reveal stagger-item" style="background:#111; border:1px solid rgba(255,255,255,.1); transition-delay: 0.1s;">
           <img
             src="./Media/Img/trasparent/vitamin_c_jar_1773483420929.jpg"
             alt="Vitamin C" style="object-position:center; width: 100%; height: 100%; object-fit: cover;" />
@@ -1969,7 +2011,7 @@
         </div>
 
         <!-- Blue -->
-        <div class="promo-card" style="background:#6B9AB8">
+        <div class="promo-card reveal stagger-item" style="background:#6B9AB8; transition-delay: 0.2s;">
           <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?q=80&w=800&auto=format&fit=crop" alt=""
             style="object-position:right bottom" />
           <div class="promo-card-overlay"
@@ -1989,7 +2031,7 @@
   <section class="products-section">
     <!-- Removed overlapping bg text -->
     <div class="container">
-      <div class="products-header">
+      <div class="products-header reveal">
         <div>
           <h2 style="font-family:'Inter',sans-serif" id="productsSectionTitle">НЕДАВНИЕ ПОСТУПЛЕНИЯ</h2>
         </div>
@@ -2008,28 +2050,28 @@
   <section class="cta-section" style="padding: 48px 0;">
     <div class="container">
       <div class="cta-grid" style="border-radius: 24px; overflow: hidden;">
-        <div class="cta-block dark">
+        <div class="cta-block dark reveal">
           <div class="cta-content">
-            <h2><span>Попробуйте наш</span> <strong>фирменный коктейль</strong></h2>
-            <button class="cta-btn">Заказать онлайн <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            <h2 class="reveal reveal-left" style="transition-delay: 0.1s;"><span>Попробуйте наш</span> <strong>фирменный коктейль</strong></h2>
+            <button class="cta-btn reveal reveal-left" style="transition-delay: 0.2s;">Заказать онлайн <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.5">
                 <line x1="2" y1="12" x2="22" y2="12" />
                 <polyline points="16 6 22 12 16 18" />
               </svg></button>
           </div>
-          <img
+          <img class="reveal reveal-right" style="transition-delay: 0.3s;"
             src="./Media/Img/trasparent/image-shake.png"
             alt="Protein Cocktail" />
         </div>
-        <div class="cta-block light">
+        <div class="cta-block light reveal">
           <div class="cta-content" style="color:#000">
-            <h2><span>Лучший фитнес с</span> <strong>лучшими добавками</strong></h2>
-            <button class="cta-btn">Купить сейчас <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <h2 class="reveal reveal-left" style="transition-delay: 0.1s;"><span>Лучший фитнес с</span> <strong>лучшими добавками</strong></h2>
+            <button class="cta-btn reveal reveal-left" style="transition-delay: 0.2s;">Купить сейчас <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <line x1="2" y1="12" x2="22" y2="12" />
                 <polyline points="16 6 22 12 16 18" />
               </svg></button>
           </div>
-          <img
+          <img class="reveal reveal-right" style="transition-delay: 0.3s;"
             src="./Media/Img/trasparent/protein_strawberry_jar_cta_1773483447205-Photoroom.png"
             alt="Protein" />
         </div>
@@ -2042,14 +2084,14 @@
   <section class="featured-section">
     <!-- Removed overlapping bg text -->
     <div class="container">
-      <h2>Выбор покупателей</h2>
+      <h2 class="reveal">Выбор покупателей</h2>
       <div class="featured-grid" id="featuredGrid"></div>
     </div>
   </section>
 
   <!-- Advantages -->
   <section class="advantages">
-    <div class="container">
+    <div class="container reveal-grid">
       <div class="advantages-grid" id="advantagesGrid"></div>
     </div>
   </section>
@@ -2058,12 +2100,12 @@
   <section class="contact">
     <div class="container">
       <div class="contact-grid">
-        <div>
-          <h2>ПОСЕТИТЕ НАШ <span>НОВЫЙ МАГАЗИН</span> В НАРВЕ!</h2>
-          <p class="desc">Мы переехали! FitnessBar 22 прошел «перезагрузку» и теперь открыт в Kerese Keskus. Приходите к
+        <div class="reveal">
+          <h2 class="reveal">ПОСЕТИТЕ НАШ <span>НОВЫЙ МАГАЗИН</span> В НАРВЕ!</h2>
+          <p class="desc reveal" style="transition-delay: 0.1s;">Мы переехали! FitnessBar 22 прошел «перезагрузку» и теперь открыт в Kerese Keskus. Приходите к
             нам за профессиональной консультацией и лучшими добавками.</p>
           <div class="contact-info">
-            <div class="contact-row">
+            <div class="contact-row reveal stagger-item">
               <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                   stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -2074,7 +2116,7 @@
                 <p>Paul Kerese 3, Narva (Kerese Keskus)</p>
               </div>
             </div>
-            <div class="contact-row">
+            <div class="contact-row reveal stagger-item" style="transition-delay: 0.1s;">
               <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                   stroke-width="2">
                   <circle cx="12" cy="12" r="10" />
@@ -2086,7 +2128,7 @@
                 <p>Сб: 11:00 - 16:00</p>
               </div>
             </div>
-            <div class="contact-row">
+            <div class="contact-row reveal stagger-item" style="transition-delay: 0.2s;">
               <div class="ci-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                   stroke-width="2">
                   <path
@@ -2100,7 +2142,7 @@
             </div>
           </div>
         </div>
-        <div class="contact-photo">
+        <div class="contact-photo reveal reveal-right" style="transition-delay: 0.3s;">
           <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop"
             alt="Store Interior" />
           <div class="contact-photo-overlay">
@@ -2117,7 +2159,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
+        <div class="reveal">
           <div class="footer-logo">FITNESSBAR<span> 22</span></div>
           <p class="footer-desc">Ваш премиальный магазин спортивного питания и добавок в Нарве. Мы помогаем вам
             достигать фитнес-целей с помощью качественных продуктов и советов экспертов.</p>
@@ -2134,7 +2176,7 @@
               </svg></a>
           </div>
         </div>
-        <div>
+        <div class="reveal" style="transition-delay: 0.1s;">
           <h4>Ссылки</h4>
           <ul>
             <li><a href="#">Каталог</a></li>
@@ -2143,7 +2185,7 @@
             <li><a href="#">Консультации</a></li>
           </ul>
         </div>
-        <div>
+        <div class="reveal" style="transition-delay: 0.2s;">
           <h4>Поддержка</h4>
           <ul>
             <li><a href="#">Доставка</a></li>
@@ -2152,7 +2194,7 @@
             <li><a href="#">FAQ</a></li>
           </ul>
         </div>
-        <div>
+        <div class="reveal" style="transition-delay: 0.3s;">
           <h4>Рассылка</h4>
           <p style="color:#6b7280;margin-bottom:24px">Подпишитесь, чтобы получать новости о новых продуктах и
             распродажах.</p>
@@ -2195,17 +2237,18 @@
   <!-- Promo Modal -->
   <div class="promo-backdrop" id="promoBackdrop"></div>
   <div class="promo-modal" id="promoModal">
+    <button class="promo-modal-close" id="closePromoBtn">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
     <div class="promo-modal-inner">
       <div class="promo-modal-img">
         <img src="https://images.unsplash.com/photo-1579722820308-d74e571900a9?q=80&w=1200&auto=format&fit=crop"
           alt="" />
       </div>
       <div class="promo-modal-body">
-        <button class="promo-modal-close" id="closePromoBtn"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
-            stroke="#fff" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg></button>
         <h2>ПОЛУЧИТЕ <span>СКИДКУ 15%</span> НА ПЕРВЫЙ ЗАКАЗ!</h2>
         <p>Присоединяйтесь к нашему сообществу и получайте эксклюзивные предложения, советы и специальную скидку на вашу
           первую покупку.</p>
@@ -2241,18 +2284,23 @@
 
     (function () { const wrap = document.getElementById('categoriesWrap'); wrap.innerHTML = CATEGORIES.map(c => `<div class="cat-item"><div class="cat-icon">${svgIcon(c.icon)}</div><span class="cat-name">${c.name}</span></div>`).join(''); })();
 
-    function productCardHTML(p) { const bc = p.tag === 'NEW' ? 'badge-new' : (p.tag ? 'badge-sale' : ''); const bh = p.tag ? `<div class="badge ${bc}">${p.tag}</div>` : ''; const op = p.oldPrice ? `<span class="price-old">€ ${p.oldPrice.toFixed(2)}</span>` : ''; return `<div class="product-card" data-id="${p.id}">${bh}<div class="product-image"><img src="${p.image}" alt="${p.name}"/></div><div class="product-info"><h4>${p.name}</h4><p class="meta">${p.description}</p><div class="price-row"><div class="price-wrap"><span class="price-current">€ ${p.price.toFixed(2)}</span>${op}</div><div class="plus-btn-circle add-quick" data-id="${p.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div></div>`; }
+    function productCardHTML(p, idx = 0) { 
+      const bc = p.tag === 'NEW' ? 'badge-new' : (p.tag ? 'badge-sale' : ''); 
+      const bh = p.tag ? `<div class="badge ${bc}">${p.tag}</div>` : ''; 
+      const op = p.oldPrice ? `<span class="price-old">€ ${p.oldPrice.toFixed(2)}</span>` : ''; 
+      const delay = (idx % 4) * 0.1;
+      return `<div class="product-card stagger-item" data-id="${p.id}" style="transition-delay: ${delay}s">${bh}<div class="product-image"><img src="${p.image}" alt="${p.name}"/></div><div class="product-info"><h4>${p.name}</h4><p class="meta">${p.description}</p><div class="price-row"><div class="price-wrap"><span class="price-current">€ ${p.price.toFixed(2)}</span>${op}</div><div class="plus-btn-circle add-quick" data-id="${p.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div></div></div>`; 
+    }
 
     function renderGrid() { 
       const t = document.getElementById('productsGrid'); 
-      // Show first 8 products (with current set being 7, we duplicate one to fill)
       const displayProducts = [...PRODUCTS, { ...PRODUCTS[0], id: '8' }].slice(0, 8);
-      t.innerHTML = displayProducts.map(p => productCardHTML(p)).join(''); 
+      t.innerHTML = displayProducts.map((p, i) => productCardHTML(p, i)).join(''); 
     }
     renderGrid();
 
-    (function () { document.getElementById('featuredGrid').innerHTML = PRODUCTS.slice(0, 3).map(p => productCardHTML(p)).join(''); })();
-    (function () { document.getElementById('advantagesGrid').innerHTML = ADVANTAGES.map(a => `<div class="adv-item"><div class="adv-icon">${svgIcon(a.icon)}</div><h4><span>${a.title.split(' ')[0]}</span> <strong>${a.title.split(' ').slice(1).join(' ')}</strong></h4><p>${a.desc}</p></div>`).join(''); })();
+    (function () { document.getElementById('featuredGrid').innerHTML = PRODUCTS.slice(0, 3).map((p, i) => productCardHTML(p, i)).join(''); })();
+    (function () { document.getElementById('advantagesGrid').innerHTML = ADVANTAGES.map((a, i) => `<div class="adv-item stagger-item" style="transition-delay: ${i*0.1}s"><div class="adv-icon">${svgIcon(a.icon)}</div><h4><span>${a.title.split(' ')[0]}</span> <strong>${a.title.split(' ').slice(1).join(' ')}</strong></h4><p>${a.desc}</p></div>`).join(''); })();
 
     document.addEventListener('click', e => { const plus = e.target.closest('.qty-plus'); const minus = e.target.closest('.qty-minus'); if (plus) { e.stopPropagation(); const el = document.getElementById('qty-' + plus.dataset.id); el.textContent = parseInt(el.textContent) + 1; } if (minus) { e.stopPropagation(); const el = document.getElementById('qty-' + minus.dataset.id); el.textContent = Math.max(1, parseInt(el.textContent) - 1); } });
     document.addEventListener('click', e => { const btn = e.target.closest('.add-to-cart-link') || e.target.closest('.add-quick'); if (!btn) return; e.stopPropagation(); const id = btn.dataset.id; const product = PRODUCTS.find(p => p.id === id); if (!product) return; const qtyEl = document.getElementById('qty-' + id); const qty = qtyEl ? parseInt(qtyEl.textContent) : 1; const existing = cart.find(c => c.id === id); if (existing) { existing.quantity += qty; } else { cart.push({ ...product, quantity: qty }); } renderCart(); openCart(); });
@@ -2286,6 +2334,22 @@
     openMenuBtn.addEventListener('click', toggleMenu);
     closeMenuBtn.addEventListener('click', toggleMenu);
     closeMenuLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+    // Intersection Observer Animation Logic
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          // If it's a grid, we might want to reveal all items at once with their delays
+          if (entry.target.classList.contains('reveal-grid')) {
+            entry.target.querySelectorAll('.stagger-item').forEach(el => el.classList.add('show'));
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .stagger-item').forEach(el => observer.observe(el));
   </script>
 </body>
 
